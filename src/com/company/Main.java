@@ -52,6 +52,7 @@ package com.company;
 //        }
 //    }
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -64,6 +65,12 @@ class Main {
 
 
         while (true) {
+
+            int u = 0;
+            Scanner input = new Scanner(System.in);
+
+            // int u;
+            // Scanner input = new Scanner(System.in);
 
 
             int r;
@@ -85,33 +92,47 @@ class Main {
             //System.out.println(showMe);
 
 
-            int u;
-            Scanner input = new Scanner(System.in);
-            // making the scanner
+            // int u;
+            // Scanner input = new Scanner(System.in);
+
+            do {
+                try {
+
+                    for (n = 0; n < 5; n++) {
+
+                        u = input.nextInt();
+
+                        if (u == showMe) {
+                            System.out.println("That was the correct number do you want to play again?");
+                            break;
 
 
-            for (n = 0; n < 5; n++) {
-                u = input.nextInt();
+                        } else if (n == 3 && u < showMe) {
+                            System.out.println("Your number is too low and It's your last guess, good luck!");
+                        } else if (n == 3 && u > showMe) {
+                            System.out.println("Your number is too high and It's your last guess good luck!");
+                        } else if (n == 4) {
+                            System.out.println("your out of guesses the answer was " + showMe + " would you like to try again? yes//no ?" +
+                                    "");
+                        } else if (u > showMe && n != 3 && n != 4) {
+                            System.out.println("your number is too high,try again !");
+                        } else if (u < showMe && n != 3 && n != 4) {
+                            System.out.println("your number is too low,try again ! ");
 
 
-                if (u == showMe) {
-                    System.out.println("That was the correct number do you want to play again?");
-                    break;
+                        }
+                    }
 
 
-                } else if (n == 3 && u < showMe) {
-                    System.out.println("Your number is too low and It's your last guess, good luck!");
-                } else if (n == 3 && u > showMe) {
-                    System.out.println("Your number is too high and It's your last guess good luck!");
-                } else if (n == 4) {
-                    System.out.println("your out of guesses the answer was " + showMe + " would you like to try again?");
-                } else if (u > showMe && n != 3 && n != 4) {
-                    System.out.println("your number is too high,try again !");
-                } else if (u < showMe && n != 3 && n != 4) {
-                    System.out.println("your number is too low,try again ! ");
+                } catch (InputMismatchException ime) {
+                    System.out.println("You didnt type a number in try again");
+                    input.nextLine();
+                    u--;
+
+
                 }
-            }
 
+            } while (n != 5 && u != r);
 
             String yes = "yes";
             String no = "no";
@@ -130,7 +151,7 @@ class Main {
 
 
         }
-
-
     }
 }
+
+
