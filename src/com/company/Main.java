@@ -127,7 +127,7 @@ class Main {
                 } catch (InputMismatchException ime) {
                     System.out.println("You didnt type a number in try again");
                     input.nextLine();
-                    u--;
+                    n++;
 
 
                 }
